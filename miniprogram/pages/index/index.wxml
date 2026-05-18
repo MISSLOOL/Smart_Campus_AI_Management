@@ -1,0 +1,262 @@
+<!-- 顶部欢迎区域 -->
+<view class="header">
+  <text class="welcome-text">你好，同学！👋</text>
+  <text class="sub-text">发现校园里的新鲜事</text>
+</view>
+
+<!-- 功能卡片列表 -->
+<view class="card-container">
+
+
+  <block wx:for="{{modules}}" wx:key="id">
+    <view class="card" bindtap="onCardClick" data-type="{{item.type}}">
+      <!-- 卡片左侧图标 -->
+      <view class="card-icon" style="background-color: {{item.color}};">
+        <text class="icon-text">{{item.icon}}</text>
+      </view>
+
+      <!-- 卡片中间文字信息 -->
+      <view class="card-content">
+        <text class="card-title">{{item.title}}</text>
+        <text class="card-desc">{{item.desc}}</text>
+      </view>
+
+      <!-- 右侧箭头 -->
+      <view class="card-arrow">
+        <text class="arrow-icon">></text>
+      </view>
+    </view>
+    
+  </block>
+</view>
+<view class="tab-bar">
+  <view class="tab-item" bindtap="goToHome">
+    <text class="tab-icon2">▣</text>
+    <text class="tab-text2">首页</text>
+  </view>
+
+  <view class="tab-item" bindtap="goToAiChat">
+    <text class="tab-icon1">☢</text>
+    <text class="tab-text1">AI对话</text>
+  </view>
+
+  <view class="tab-item" bindtap="goToProfile">
+    <text class="tab-icon">⚌</text>
+    <text class="tab-text">个人中心</text>
+  </view>
+</view>
+
+<!-- From Uiverse.io by whoisyourdeadie --> 
+<div class="matrix-container">
+  <div class="matrix-pattern">
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+  </div>
+  <div class="matrix-pattern">
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+  </div>
+  <div class="matrix-pattern">
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+  </div>
+  <div class="matrix-pattern">
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+  </div>
+  <div class="matrix-pattern">
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+    <div class="matrix-column"></div>
+  </div>
+</div>
+

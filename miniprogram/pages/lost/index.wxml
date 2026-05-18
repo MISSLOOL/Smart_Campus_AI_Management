@@ -1,0 +1,75 @@
+<!-- pages/index/index.wxml -->
+<view class="custom-nav">
+  <!-- 左侧图标 -->
+  <view class="nav-left" bindtap="goHome">
+    <text class="icon">↩</text> <!-- 这里可以用图标或文字 -->
+  </view>
+
+  <!-- 中间标题 -->
+  <view class="nav-title">失物招领</view>
+</view>
+<view class="container">
+  <!-- 顶部搜索栏 -->
+<view class="search-container">
+  <view class="search-input">
+    <!-- 搜索图标 -->
+    <text class="search-icon">🔍</text>
+    
+    <!-- 输入框 -->
+    <input 
+      class="input-field"
+      type="text" 
+      placeholder="搜索物品名称、地点..." 
+      value="{{searchValue}}" 
+      bindinput="onSearch" 
+      bindconfirm="handleSearchConfirm"
+      confirm-type="search"
+    />
+    
+    <!-- 清除按钮 (只有输入内容时才显示) -->
+    <text class="clear-icon" wx:if="{{searchValue}}" bindtap="clearSearch">✕</text>
+  </view>
+  
+  <!-- 发布按钮 -->
+  <button class="add-btn" bindtap="goToAdd">发布</button>
+</view>
+
+  <!-- 顶部Tab切换 -->
+  <view class="fixed-tabs-container">
+  <view class="tabs">
+    <view class="tab-item {{currentTab === 'lost' ? 'active' : ''}}" bindtap="switchTab" data-type="lost">
+      寻物启事
+    </view>
+    <view class="tab-item {{currentTab === 'found' ? 'active' : ''}}" bindtap="switchTab" data-type="found">
+      失物招领
+    </view>
+  </view>
+</view>
+
+  <!-- 列表区域 -->
+  <view class="list-container">
+    <block wx:for="{{list}}" wx:key="id">
+      <view class="card" bindtap="goToDetail" data-id="{{item.id}}">
+        <view class="card-left">
+          <image src="{{item.image || '/images/xxx.jpg'}}" mode="aspectFill" />
+        </view>
+        <view class="card-right">
+          <view class="title">{{item.title}}</view>
+          <view class="info">
+            <text class="tag {{currentTab}}">{{currentTab === 'lost' ? '丢失' : '拾得'}}</text>
+            <text class="location">📍 {{item.location}}</text>
+          </view>
+          <view class="time">{{item.createTime}}</view>
+        </view>
+      </view>
+    </block>
+    
+    <view wx:if="{{list.length === 0 && !loading}}" class="empty">
+      暂无相关信息
+    </view>
+    
+    <view wx:if="{{loading}}" class="loading">
+      <text>加载中...</text>
+    </view>
+  </view>
+</view>

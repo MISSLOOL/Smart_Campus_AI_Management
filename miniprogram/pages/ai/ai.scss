@@ -1,0 +1,472 @@
+/* 基础页面布局保持不变... */
+.custom-nav {
+  width: 100%;
+  height: calc(var(--status-bar-height) + 44px);
+  padding-top: var(--status-bar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  min-height: 100px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  position: relative;
+  z-index: 99;
+}
+.nav-left {
+  font-size: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin-top: 55px;
+}
+.nav-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: 30px;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.ai-page {
+  height: 86vh;
+  display: flex;
+  flex-direction: column;
+  background: #f7f8fa;
+}
+
+.chat-scroll {
+  flex: 1;
+  height: 0;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+.message-box {
+  display: flex;
+  flex-direction: column;
+  gap: 28rpx;
+}
+
+.message {
+  display: flex;
+  align-items: flex-end;
+}
+.message.ai { justify-content: flex-start; }
+.message.user { justify-content: flex-end; }
+
+.bubble {
+  position: relative;
+  max-width: 70%;
+  padding: 20rpx 26rpx;
+  font-size: 28rpx;
+  line-height: 1.5;
+  border-radius: 20rpx;
+  word-break: break-word;
+  display: flex;       /* 新增 */
+  flex-direction: column; /* 新增：垂直排列 */
+  align-items: flex-start; /* 新增：左对齐 */
+}
+.message.ai .bubble {
+  background: #fff;
+  color: #333;
+  border: 1rpx solid #eee;
+  border-radius: 20rpx 20rpx 20rpx 6rpx;
+}
+.message.user .bubble {
+  background: #667eea;
+  color: #fff;
+  border-radius: 20rpx 20rpx 6rpx 20rpx;
+}
+
+/* ✅ 底部操作区域：整体容器 */
+.bottom-area {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start; /* 修改：从 flex-end 改为 flex-start，防止左侧滚动影响右侧 */
+  padding: 16rpx;
+  background: rgba(255,255,255,0.95);
+  border-top: 1rpx solid #eee;
+  position: relative;
+  z-index: 100;
+  gap: 12rpx;
+}
+
+/* ✅ 左侧堆叠区：垂直排列 */
+.left-stack {
+  display: flex;
+  flex-direction: column; /* 垂直方向 */
+  align-items: center;    /* 水平居中 */
+  justify-content: flex-end; /* 底部对齐 */
+  gap: 10rpx;             /* 元素间距 */
+  width: 180rpx;          /* 修改：加宽到180rpx，适应两列图片 */
+  margin-bottom: 8rpx;
+  flex-shrink: 0;
+  max-height: 360rpx;     /* 新增：限制最大高度 */
+  overflow-y: auto;       /* 新增：超出后内部滚动 */
+}
+
+/* 1. 预览样式 - 修改为网格布局实现水平排列 */
+.stack-preview {
+  display: grid;
+  /* 修改这里：1fr 代表一份，写4个就是4列 */
+  grid-template-columns: 1fr 1fr 1fr 1fr; 
+  
+  /* 建议间距设小一点，否则4张图挤不下 */
+  gap: 8rpx; 
+  width: 100%;
+}
+.stack-preview-item {
+  position: relative;
+  /* width: 50%;  <-- 删除这一行，或者改成 auto */
+  width: auto;
+  aspect-ratio: 1 / 1; /* 保持正方形 */
+  border-radius: 12rpx;
+  overflow: hidden;
+  border: 2rpx solid #eee;
+}
+
+.mini-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.mini-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 36rpx;
+  height: 36rpx;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  text-align: center;
+  line-height: 36rpx;
+  font-size: 32rpx;
+  border-bottom-left-radius: 12rpx;
+}
+
+/* 2. 模型按钮样式 */
+.stack-model {
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  background: #f5e61d;
+  border-radius: 25rpx;
+  font-size: 22rpx;
+  color: #555;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+  border: 1rpx solid grey;
+  font-weight: 800;
+}
+.model-btn-active {
+  background: #e4e6eb;
+  transform: scale(0.95);
+}
+
+/* 3. 加号按钮样式 */
+.stack-plus {
+  width: 56rpx;
+  height: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5rpx;
+}
+.icon-btn {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #f1f3f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon-btn:active {
+  transform: scale(0.9);
+  background: #e4e6eb;
+}
+.plus {
+  width: 24rpx;
+  height: 24rpx;
+  position: relative;
+}
+.plus::before, .plus::after {
+  content: '';
+  position: absolute;
+  background: #555;
+  border-radius: 2rpx;
+}
+.plus::before { width: 100%; height: 4rpx; top: 50%; left: 0; transform: translateY(-50%); }
+.plus::after { width: 4rpx; height: 100%; left: 50%; top: 0; transform: translateX(-50%); }
+
+/* ✅ 右侧输入区域 */
+.right-input {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  height: 72rpx; /* 与加号按钮底部对齐 */
+}
+
+.input {
+  flex: 1;
+  height: 100%;
+  background: #f1f3f5;
+  border-radius: 36rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+}
+
+.send-btn {
+  height: 100%;
+  padding: 0 28rpx;
+  line-height: 72rpx;
+  background: #667eea;
+  color: #fff;
+  border-radius: 36rpx;
+  font-size: 26rpx;
+  flex-shrink: 0;
+}
+.send-btn.disabled {
+  background: #ccc;
+}
+
+.message-image {
+  width: 300rpx;       /* 图片宽度 */
+  height: 300rpx;      /* 图片高度 */
+  border-radius: 12rpx;/* 圆角 */
+  margin-bottom: 10rpx;/* 图片和文字的间距 */
+  display: block;      /* 独占一行 */
+  background: #f0f0f0; /* 加载时的背景色 */
+}
+
+/* 如果既有图片又有文字，调整一下气泡的样式（可选） */
+.message.user .bubble {
+  background: #667eea;
+  color: #fff;
+  border-radius: 20rpx 20rpx 6rpx 20rpx;
+  display: flex;       /* 使用flex布局让图片和文字垂直排列 */
+  flex-direction: column;
+}
+
+.message-img {
+  width: 200rpx;       /* 图片宽度 */
+  height: 200rpx;      /* 图片高度 */
+  border-radius: 12rpx;/* 圆角 */
+  margin-bottom: 10rpx;/* 图片和文字的间距 */
+  display: block;      /* 独占一行 */
+  background-color: #f0f0f0; /* 加载占位色 */
+}
+.copy-btn {
+  position: absolute;
+  bottom: -60rpx;       /* 沉到底部下方 */
+  left: 0rpx;         /* 靠右 */
+  font-size: 28rpx;
+  color: rgb(255, 255, 255);          /* 灰色文字 */
+  background-color: rgb(243, 112, 112); /* 白色背景遮挡气泡边框 */
+  padding: 2rpx 10rpx;
+  border-radius: 10rpx;
+  border: 1rpx solid #eee;
+  z-index: 10;          /* 保证层级在上面 */
+}
+
+/* 原代码中的 .message-img 样式替换为以下内容 */
+
+/* ✅ 图片容器：负责定位和尺寸 */
+.message-img-container {
+  position: relative;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 12rpx;
+  margin-bottom: 10rpx;
+  overflow: hidden;
+  background-color: #f0f0f0; /* 加载占位色 */
+}
+
+/* ✅ 图片本身：填满容器 */
+.message-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ✅ 遮罩层：半透明黑色背景 */
+.message-img-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 50%透明度黑色 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12rpx;
+}
+
+/* ✅ 数量文字：白色加粗大字 */
+.message-img-count {
+  color: #ffffff;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.menu-icon {
+  width: 40rpx;
+  height: 32rpx; /* 高度容纳三个条 */
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+  justify-content: space-between; /* 条带均匀分布 */
+}
+
+/* 新增：单条样式 */
+.menu-bar {
+  width: 100%;
+  height: 4rpx;
+  background-color: #333; /* 颜色可根据主题调整 */
+  border-radius: 10rpx;
+  border: 1.5px solid black;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80%; /* 占据屏幕 80% 宽度 */
+  height: 100vh;
+  background-color: #fff;
+  z-index: 200; /* 层级最高 */
+  transform: translateX(-100%); /* 初始隐藏在屏幕左侧 */
+  transition: transform 0.3s ease-in-out; /* 动画效果 */
+}
+
+.sidebar.open {
+  transform: translateX(0); /* 滑出 */
+}
+
+.sidebar-content {
+  padding-top: 100rpx;
+}
+
+.sidebar-item {
+  padding: 30rpx 40rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  border-bottom: 1rpx solid #eee;
+}
+
+/* --- 遮罩层样式 --- */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* 半透明黑色 */
+  z-index: 100; /* 层级在侧边栏之下，内容之上 */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- 主容器样式 --- */
+.main-container {
+  height: 100vh;
+  background-color: #fff; /* 背景色，防止透出底层 */
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+}
+
+.main-container.shifted {
+  transform: translateX(80%); /* 向右移动 80%，露出侧边栏 */
+}
+
+.search-container {
+  width: 100%;
+  display: flex;
+  padding: 20rpx 0;
+  background: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  align-items: center;
+
+  .clear-icon {
+    font-size: 28rpx;
+    color: #ccc;
+    padding: 10rpx;
+    margin-left: 10rpx;
+  }
+
+  .search-input {
+    flex: 1;
+    background: #f0f2f5;
+    margin: 10rpx 20rpx;
+    padding: 15rpx 25rpx;
+    border-radius: 30rpx;
+    font-size: 28rpx;
+    display: flex;
+    align-items: center;
+
+    .icon {
+      font-size: 30rpx;
+    }
+
+    input {
+      margin-left: 10rpx;
+      flex: 1;
+    }
+  }
+}
+
+.history-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.history-title {
+  padding: 24rpx 40rpx 16rpx;
+  font-size: 28rpx;
+  color: rgb(55, 111, 184);
+  font-weight: 600;
+}
+
+.history-list {
+  flex: 1;
+  height: 400rpx; /* ✅ 固定高度，超出滚动 */
+}
+
+.history-item {
+  padding: 20rpx 40rpx;
+  font-size: 32rpx;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 600;
+  margin-left: 10rpx;
+
+}
+
+.history-item.delete-all {
+  color: #ff4d4f;
+  font-size: 32rpx;
+  margin-left: 0rpx;
+}

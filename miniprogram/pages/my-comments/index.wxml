@@ -1,0 +1,30 @@
+<view class="custom-nav">
+  <view class="nav-left" bindtap="goBack">
+    <text class="icon">↩</text>
+  </view>
+  <view class="nav-title">我的评论</view>
+</view>
+
+<view class="container">
+  <view class="comment-list">
+    <view class="comment-item" wx:for="{{commentList}}" wx:key="id" bindtap="goToPost" data-postid="{{item.postId}}">
+      <view class="comment-content">{{item.content}}</view>
+      <view class="comment-footer">
+        <view class="post-info">
+          <text class="post-label">回复帖子：</text>
+          <text class="post-title">{{item.postTitle || '查看帖子'}}</text>
+        </view>
+        <view class="comment-time">{{item.createTime}}</view>
+      </view>
+    </view>
+
+    <view wx:if="{{commentList.length === 0 && !loading}}" class="empty">
+      <text class="empty-icon">💬</text>
+      <text class="empty-text">暂无评论</text>
+    </view>
+
+    <view wx:if="{{loading}}" class="loading">
+      <text>加载中...</text>
+    </view>
+  </view>
+</view>

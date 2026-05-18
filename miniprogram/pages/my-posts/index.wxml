@@ -1,0 +1,39 @@
+<view class="custom-nav">
+  <view class="nav-left" bindtap="goBack">
+    <text class="icon">↩</text>
+  </view>
+  <view class="nav-title">我的帖子</view>
+</view>
+
+<view class="container">
+  <view class="post-list">
+    <view class="post-item" wx:for="{{postList}}" wx:key="id" bindtap="goToPost" data-id="{{item.id}}">
+      <view class="post-title">{{item.title}}</view>
+      <view class="post-content">{{item.content}}</view>
+      <view class="post-footer">
+        <view class="footer-item">
+          <image class="footer-icon" src="/images/浏览.png" mode="aspectFit"></image>
+          <text class="footer-num">{{item.viewCount}}</text>
+        </view>
+        <view class="footer-item">
+          <image class="footer-icon" src="/images/赞.png" mode="aspectFit"></image>
+          <text class="footer-num">{{item.likeCount}}</text>
+        </view>
+        <view class="footer-item">
+          <image class="footer-icon" src="/images/回复.png" mode="aspectFit"></image>
+          <text class="footer-num">{{item.commentCount}}</text>
+        </view>
+        <view class="post-time">{{item.createTime}}</view>
+      </view>
+    </view>
+
+    <view wx:if="{{postList.length === 0 && !loading}}" class="empty">
+      <text class="empty-icon">📝</text>
+      <text class="empty-text">暂无帖子</text>
+    </view>
+
+    <view wx:if="{{loading}}" class="loading">
+      <text>加载中...</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,109 @@
+
+<view class="custom-nav {{pageType === 'market' ? 'market-nav' : ''}}">
+  <view class="nav-left" bindtap="goHome">
+    <text class="icon">↩</text>
+  </view>
+  <view class="nav-title">{{pageType === 'market' ? '发布闲置' : '发布填写'}}</view>
+</view>
+
+<view class="container">
+  <form bindsubmit="onSubmit">
+    
+    <!-- 失物招领类型选择 -->
+    <view class="form-section" wx:if="{{pageType === 'lost'}}">
+      <view class="section-title">类型 <text class="required">*</text></view>
+      <radio-group class="radio-group" bindchange="onTypeChange">
+        <label class="radio-label">
+          <radio value="0" color="#07c160" checked="{{type === '0'}}"/> 失物招领(捡到)
+        </label>
+        <label class="radio-label">
+          <radio value="1" color="#07c160" checked="{{type === '1'}}"/> 寻物启事(丢失)
+        </label>
+      </radio-group>
+    </view>
+
+    <!-- 二手市场分类选择 -->
+    <view class="form-section" wx:if="{{pageType === 'market'}}">
+      <view class="section-title">商品分类 <text class="required">*</text></view>
+      <picker mode="selector" range="{{categories}}" value="{{categoryIndex}}" bindchange="onCategoryChange">
+        <view class="picker-value">
+          {{category}}
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 标题 -->
+    <view class="form-section">
+      <view class="section-title">标题 <text class="required">*</text></view>
+      <input name="title" class="custom-input" placeholder="{{pageType === 'market' ? '请输入商品名称' : '请输入标题，如：校园卡丢失'}}" value="{{title}}" bindinput="onTitleInput"/>
+    </view>
+
+    <!-- 地点 (仅失物招领显示) -->
+    <view class="form-section" wx:if="{{pageType === 'lost'}}">
+      <view class="section-title">地点 <text class="required">*</text></view>
+      <input name="location" class="custom-input" placeholder="例如：第三教学楼、食堂" value="{{location}}" bindinput="onLocationInput"/>
+    </view>
+
+    <!-- 二手市场价格信息 -->
+    <view class="form-section" wx:if="{{pageType === 'market'}}">
+      <view class="section-title">价格信息 <text class="required">*</text></view>
+      <view class="price-inputs">
+        <view class="price-item">
+          <text class="price-label">售价(元)</text>
+          <input name="price" class="custom-input price-input" type="digit" placeholder="0.00" value="{{price}}" bindinput="onPriceInput"/>
+        </view>
+        <view class="price-item">
+          <text class="price-label">原价(元)</text>
+          <input name="originalPrice" class="custom-input price-input" type="digit" placeholder="可选" value="{{originalPrice}}" bindinput="onOriginalPriceInput"/>
+        </view>
+      </view>
+    </view>
+
+    <!-- 二手市场成色选择 -->
+    <view class="form-section" wx:if="{{pageType === 'market'}}">
+      <view class="section-title">商品成色</view>
+      <picker mode="selector" range="{{conditions}}" value="{{conditionIndex}}" bindchange="onConditionChange">
+        <view class="picker-value">
+          {{condition}}
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 图片上传 -->
+    <view class="form-section">
+      <view class="section-title">图片 <text class="optional">(最多{{maxImages}}张)</text></view>
+      <view class="image-list">
+        <!-- 已上传的图片 -->
+        <view class="image-item" wx:for="{{imageList}}" wx:key="*this">
+          <image src="{{item}}" mode="aspectFill" class="uploaded-image" bindtap="previewImage" data-index="{{index}}"/>
+          <view class="delete-btn" catchtap="deleteImage" data-index="{{index}}">✕</view>
+        </view>
+        <!-- 添加图片按钮 -->
+        <view class="image-item add-image" wx:if="{{imageList.length < maxImages}}" bindtap="chooseImage">
+          <text class="add-icon">+</text>
+          <text class="add-text">添加图片</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 描述 -->
+    <view class="form-section">
+      <view class="section-title">{{pageType === 'market' ? '商品描述' : '描述'}} <text class="required">*</text></view>
+      <textarea name="content" class="custom-textarea" placeholder="{{pageType === 'market' ? '详细描述商品的使用情况、购买时间、转手原因等...' : '详细描述物品特征、丢失/拾取时间等...'}}" value="{{content}}" bindinput="onContentInput"></textarea>
+    </view>
+
+    <!-- 联系方式 -->
+    <view class="form-section">
+      <view class="section-title">联系方式 <text class="required">*</text></view>
+      <input name="contact" class="custom-input" placeholder="手机号或QQ（方便联系）" value="{{contact}}" bindinput="onContactInput"/>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-container">
+      <button formType="submit" class="submit-btn {{pageType === 'market' ? 'market-btn' : ''}}">立即发布</button>
+    </view>
+
+  </form>
+</view>

@@ -1,0 +1,468 @@
+/* 整体背景 */
+page {
+  height: 100%;
+  background-color: #fff
+}
+
+/* 顶部区域 */
+.header {
+  background: linear-gradient(135deg, #00bcd4, #0097a7);
+  padding: 30rpx 50rpx 20rpx;
+  color: white;
+  border-bottom-left-radius: 30rpx;
+  border-bottom-right-radius: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 188, 212, 0.3);
+
+  .welcome-text {
+    font-size: 48rpx;
+    font-weight: bold;
+    display: block;
+    padding-top: 80rpx;
+    transform: translate(0,0rpx);
+  }
+
+  .sub-text {
+    font-size: 28rpx;
+    opacity: 0.9;
+    
+  }
+}
+
+/* 卡片容器 */
+.card-container {
+  padding: 0 30rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx; /* 卡片间距 */
+}
+
+/* 单个卡片样式 */
+.card {
+  background-color: #ffffff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+
+  // 点击态样式
+  &:active {
+    transform: scale(0.98);
+    background-color: #f9f9f9;
+  }
+}
+
+/* 左侧图标区域 */
+.card-icon {
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30rpx;
+
+  .icon-text {
+    font-size: 45rpx;
+    color: white;
+  }
+}
+
+/* 中间文字内容 */
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  .card-title {
+    font-size: 36rpx;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10rpx;
+  }
+
+  .card-desc {
+    font-size: 26rpx;
+    color: #888;
+  }
+}
+
+/* 右侧箭头样式 */
+.card-arrow {
+  color: #ccc;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  margin-left: 10rpx; /* 稍微与文字隔开一点 */
+}
+
+
+// 底部导航栏
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #eee;
+  z-index: 999;
+
+  .tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    color: #666;
+    gap: 4px;
+    z-index: 99;
+
+    .tab-icon {
+      font-size: 25px;
+     
+    }
+    .tab-icon2 {
+      font-size: 25px;
+      font-weight: bold;
+    }
+    .tab-text2 {
+      font-size: 12px;
+      transform: translate(0,-6px);
+    }
+    .tab-icon1 {
+      font-size: 30px;
+    }
+    .tab-text1 {
+      font-size: 12px;
+      transform: translate(0,-8px);
+    }
+    .tab-text {
+      font-size: 12px;
+      transform: translate(0,-6px);
+    }
+  }
+}
+
+// 给页面底部留出导航高度
+.card-container {
+  padding-bottom: 60px;
+}
+
+
+/* index.wxss */
+
+
+//神秘降临字
+.matrix-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(255, 255, 255);
+  display: flex;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.matrix-pattern {
+  position: relative;
+  width: 1000px;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.matrix-column {
+  position: absolute;
+  top: -100%;
+  width: 28px;
+  height: 100%;
+  font-size: 30px;
+  line-height: 27px;
+  font-weight: bold;
+  animation: fall linear infinite;
+  white-space: nowrap;
+}
+
+.matrix-column::before {
+  content: "长风破浪会有时，直挂云帆济沧海。千磨万击还坚劲，任尔东西南北风。大鹏一日同风起，扶摇直上九万里。路漫漫其修远兮，吾将上下而求索。不经一番寒彻骨，怎得梅花扑鼻香。黄沙百战穿金甲，不破楼兰终不还。莫愁前路无知己，天下谁人不识君。会当凌绝顶，一览众山小。";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #ffffff 5%,
+    #00ff41 10%,
+    #00ff41 20%,
+    #00dd33 30%,
+    #00bb22 40%,
+    #009911 50%,
+    #007700 60%,
+    #005500 70%,
+    #003300 80%,
+    rgba(0, 255, 65, 0.5) 90%,
+    transparent 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  writing-mode: vertical-lr;
+  letter-spacing: 1px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.matrix-column:nth-child(1) {
+  left: 0px;
+  animation-delay: -2.5s;
+  animation-duration: 10.8s;
+}
+.matrix-column:nth-child(2) {
+  left: 25px;
+  animation-delay: -3.2s;
+  animation-duration: 14.4s;
+}
+.matrix-column:nth-child(3) {
+  left: 50px;
+  animation-delay: -1.8s;
+  animation-duration: 9s;
+}
+.matrix-column:nth-child(4) {
+  left: 75px;
+  animation-delay: -2.9s;
+  animation-duration: 12.6s;
+}
+.matrix-column:nth-child(5) {
+  left: 100px;
+  animation-delay: -1.5s;
+  animation-duration: 10.8s;
+}
+.matrix-column:nth-child(6) {
+  left: 125px;
+  animation-delay: -3.8s;
+  animation-duration: 16.2s;
+}
+.matrix-column:nth-child(7) {
+  left: 150px;
+  animation-delay: -2.1s;
+  animation-duration: 10.08s;
+}
+.matrix-column:nth-child(8) {
+  left: 175px;
+  animation-delay: -2.7s;
+  animation-duration: 11.52s;
+}
+.matrix-column:nth-child(9) {
+  left: 200px;
+  animation-delay: -3.4s;
+  animation-duration: 13.68s;
+}
+.matrix-column:nth-child(10) {
+  left: 225px;
+  animation-delay: -1.9s;
+  animation-duration: 9.72s;
+}
+.matrix-column:nth-child(11) {
+  left: 250px;
+  animation-delay: -3.6s;
+  animation-duration: 15.12s;
+}
+.matrix-column:nth-child(12) {
+  left: 275px;
+  animation-delay: -2.3s;
+  animation-duration: 11.16s;
+}
+.matrix-column:nth-child(13) {
+  left: 300px;
+  animation-delay: -3.1s;
+  animation-duration: 12.96s;
+}
+.matrix-column:nth-child(14) {
+  left: 325px;
+  animation-delay: -2.6s;
+  animation-duration: 10.44s;
+}
+.matrix-column:nth-child(15) {
+  left: 350px;
+  animation-delay: -3.7s;
+  animation-duration: 14.76s;
+}
+.matrix-column:nth-child(16) {
+  left: 375px;
+  animation-delay: -2.8s;
+  animation-duration: 11.88s;
+}
+.matrix-column:nth-child(17) {
+  left: 400px;
+  animation-delay: -3.3s;
+  animation-duration: 13.32s;
+}
+.matrix-column:nth-child(18) {
+  left: 425px;
+  animation-delay: -2.2s;
+  animation-duration: 9.36s;
+}
+.matrix-column:nth-child(19) {
+  left: 450px;
+  animation-delay: -3.9s;
+  animation-duration: 15.48s;
+}
+.matrix-column:nth-child(20) {
+  left: 475px;
+  animation-delay: -2.4s;
+  animation-duration: 12.24s;
+}
+.matrix-column:nth-child(21) {
+  left: 500px;
+  animation-delay: -1.7s;
+  animation-duration: 8.64s;
+}
+.matrix-column:nth-child(22) {
+  left: 525px;
+  animation-delay: -3.5s;
+  animation-duration: 14.04s;
+}
+.matrix-column:nth-child(23) {
+  left: 550px;
+  animation-delay: -2s;
+  animation-duration: 10.8s;
+}
+.matrix-column:nth-child(24) {
+  left: 575px;
+  animation-delay: -4s;
+  animation-duration: 15.84s;
+}
+.matrix-column:nth-child(25) {
+  left: 600px;
+  animation-delay: -1.6s;
+  animation-duration: 8.28s;
+}
+.matrix-column:nth-child(26) {
+  left: 625px;
+  animation-delay: -3s;
+  animation-duration: 12.6s;
+}
+.matrix-column:nth-child(27) {
+  left: 650px;
+  animation-delay: -3.8s;
+  animation-duration: 14.4s;
+}
+.matrix-column:nth-child(28) {
+  left: 675px;
+  animation-delay: -2.5s;
+  animation-duration: 10.08s;
+}
+.matrix-column:nth-child(29) {
+  left: 700px;
+  animation-delay: -3.2s;
+  animation-duration: 12.96s;
+}
+.matrix-column:nth-child(30) {
+  left: 725px;
+  animation-delay: -2.7s;
+  animation-duration: 11.52s;
+}
+.matrix-column:nth-child(31) {
+  left: 750px;
+  animation-delay: -1.8s;
+  animation-duration: 9.72s;
+}
+.matrix-column:nth-child(32) {
+  left: 775px;
+  animation-delay: -3.6s;
+  animation-duration: 14.76s;
+}
+.matrix-column:nth-child(33) {
+  left: 800px;
+  animation-delay: -2.1s;
+  animation-duration: 11.16s;
+}
+.matrix-column:nth-child(34) {
+  left: 825px;
+  animation-delay: -3.4s;
+  animation-duration: 13.32s;
+}
+.matrix-column:nth-child(35) {
+  left: 850px;
+  animation-delay: -2.8s;
+  animation-duration: 10.44s;
+}
+.matrix-column:nth-child(36) {
+  left: 875px;
+  animation-delay: -3.7s;
+  animation-duration: 15.12s;
+}
+.matrix-column:nth-child(37) {
+  left: 900px;
+  animation-delay: -2.3s;
+  animation-duration: 11.88s;
+}
+.matrix-column:nth-child(38) {
+  left: 925px;
+  animation-delay: -1.9s;
+  animation-duration: 9s;
+}
+.matrix-column:nth-child(39) {
+  left: 950px;
+  animation-delay: -3.5s;
+  animation-duration: 13.68s;
+}
+.matrix-column:nth-child(40) {
+  left: 975px;
+  animation-delay: -2.6s;
+  animation-duration: 12.24s;
+}
+
+.matrix-column:nth-child(odd)::before {
+  content: "海内存知己，天涯若比邻，无为在歧路，儿女共沾巾，不畏浮云遮望眼，自缘身在最高层，穷且益坚，不坠青云之志，壮心未与年俱老，死去犹能作鬼雄，博观而约取，厚积而薄发";
+}
+
+.matrix-column:nth-child(even)::before {
+  content: "咬定青山不放松，立根原在破岩中，粉身碎骨浑不怕，要留清白在人间，沉舟侧畔千帆过，病树前头万木春，天生我材必有用，千金散尽还复来，三更灯火五更鸡，正是男儿读书时，黑发不知勤学早，白首方悔读书迟";
+}
+
+.matrix-column:nth-child(3n)::before {
+  content: "立志欲坚不欲锐，成功在久不在速。纸上得来终觉浅，绝知此事要躬行。苟利国家生死以，岂因祸福避趋之。捐躯赴国难，视死忽如归。千淘万漉虽辛苦，吹尽狂沙始到金。";
+}
+
+.matrix-column:nth-child(4n)::before {
+  content: "生当作人杰死亦为鬼雄至今思项羽不肯过江东男儿何不带吴钩收取关山五十州请君暂上凌烟阁若个书生万户侯";
+}
+
+.matrix-column:nth-child(5n)::before {
+  content: "安得广厦千万间大庇天下寒士俱欢颜风雨不动安如山呜呼何时眼前突兀见此屋吾庐独破受冻死亦足僵卧孤村不自哀尚思为国戍轮台夜阑卧听风吹雨铁马冰河入梦来";
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(200%);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .matrix-column {
+    font-size: 20px;
+    line-height: 22px;
+    width: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .matrix-column {
+    font-size: 18px;
+    line-height: 20px;
+    width: 20px;
+  }
+}

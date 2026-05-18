@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/lost/index",
+    "pages/market/index",
+    "pages/add/add",
+    "pages/detail/detail",
+    "pages/profile/profile",
+    "pages/ai/ai",
+    "pages/debate/debate",
+    "pages/forum-detail/index",
+    "pages/post-detail/index",
+    "pages/my-posts/index",
+    "pages/my-comments/index",
+    "pages/chats/chats"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "style": "v2",
+  "rendererOptions": {
+    "skyline": {
+      "defaultDisplayBlock": true,
+      "defaultContentBox": true,
+      "tagNameStyleIsolation": "legacy",
+      "disableABTest": true,
+      "sdkVersionBegin": "3.0.0",
+      "sdkVersionEnd": "15.255.255"
+    }
+  },
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

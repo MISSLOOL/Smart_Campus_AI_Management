@@ -1,0 +1,92 @@
+<view class="custom-nav">
+  <view class="nav-left" bindtap="goHome">
+    <text class="icon">↩</text>
+  </view>
+  <view class="nav-title">校园论坛</view>
+</view>
+
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input">
+      <text class="search-icon">🔍</text>
+      <input 
+        class="input-field"
+        type="text"
+        placeholder="搜索帖子..."
+        value="{{searchValue}}"
+        bindinput="onSearch"
+      />
+      <text class="clear-icon" wx:if="{{searchValue}}" bindtap="clearSearch">✕</text>
+    </view>
+  </view>
+
+  <!-- 分类标签 -->
+  <view class="category-tabs">
+    <scroll-view scroll-x class="tabs-scroll">
+      <view class="tabs-list">
+        <view 
+          class="tab-item {{currentCategory === item ? 'active' : ''}}"
+          wx:for="{{categories}}"
+          wx:key="*this"
+          bindtap="switchCategory"
+          data-category="{{item}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 帖子列表 -->
+  <view class="post-list">
+    <view class="post-item" wx:for="{{postList}}" wx:key="id" bindtap="goToPost" data-id="{{item.id}}">
+      <view class="post-header">
+        <image class="user-avatar" src="{{item.avatar || '/images/xxx.jpg'}}" mode="aspectFill"></image>
+        <view class="user-info">
+          <text class="user-name">{{item.nickname || '匿名用户'}}</text>
+          <text class="post-time">{{item.createTime}}</text>
+        </view>
+        <view class="post-category-tag">{{item.category}}</view>
+      </view>
+
+      <view class="post-body">
+        <view class="post-title">{{item.title}}</view>
+        <view class="post-content">{{item.content}}</view>
+      </view>
+
+      <view class="post-footer">
+        <view class="footer-item">
+          <image class="footer-icon" src="/images/浏览.png" mode="aspectFit"></image>
+          <text class="footer-num">{{item.viewCount}}</text>
+        </view>
+        <view class="footer-item">
+          <image class="footer-icon" src="/images/赞.png" mode="aspectFit"></image>
+          <text class="footer-num">{{item.likeCount}}</text>
+        </view>
+        <view class="footer-item">
+          <image class="footer-icon" src="/images/回复.png" mode="aspectFit"></image>
+          <text class="footer-num">{{item.commentCount}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{postList.length === 0 && !loading}}" class="empty">
+      <text class="empty-icon">📝</text>
+      <text class="empty-text">暂无帖子</text>
+      <text class="empty-hint">快来发布第一个帖子吧~</text>
+    </view>
+
+    <!-- 加载状态 -->
+    <view wx:if="{{loading}}" class="loading">
+      <text>加载中...</text>
+    </view>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="publish-btn" bindtap="goToPublish">
+    <image class="publish-icon" src="/images/修改.png" mode="aspectFit"></image>
+    <text class="publish-text">发帖</text>
+  </view>
+</view>

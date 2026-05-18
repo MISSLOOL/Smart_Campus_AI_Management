@@ -1,0 +1,176 @@
+<view class="custom-nav">
+  <view class="nav-left" bindtap="goHome">
+    <text class="back-icon">↩</text>
+  </view>
+  <view class="nav-title">个人中心</view>
+</view>
+
+<view class="container">
+  <!-- 用户信息卡片 - 全宽 -->
+  <view class="user-card">
+    <view class="avatar-wrapper" bindtap="changeAvatar">
+      <image class="avatar" src="{{userInfo.avatar || '/images/xxx.jpg'}}" mode="aspectFill"></image>
+      <view class="avatar-edit" wx:if="{{userInfo.isLogin}}">
+        <image class="edit-icon" src="/images/照相机.png" mode="aspectFit"></image>
+      </view>
+    </view>
+    
+    <view class="user-info" wx:if="{{userInfo.isLogin}}">
+      <view class="nickname-row" bindtap="showEdit" data-type="nickname">
+        <text class="nickname">{{userInfo.nickname}}</text>
+        <image class="edit-tag" src="/images/修改.png" mode="aspectFit"></image>
+      </view>
+      <text class="user-id">ID: {{userInfo.id}}</text>
+    </view>
+    
+    <view class="user-info" wx:else>
+      <button class="login-btn" open-type="chooseAvatar" bindchooseavatar="onLoginTap">
+        点击登录
+      </button>
+      <text class="login-hint">登录后体验更多功能</text>
+    </view>
+  </view>
+
+  <!-- 统计数据 - 全宽 -->
+  <view class="stats-card" wx:if="{{userInfo.isLogin}}">
+    <view class="stat-item">
+      <text class="stat-num">{{postCount}}</text>
+      <text class="stat-label">我的帖子</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-num">{{commentCount}}</text>
+      <text class="stat-label">我的评论</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-num">0</text>
+      <text class="stat-label">我的收藏</text>
+    </view>
+  </view>
+
+  <!-- 功能列表 - 全宽 -->
+  <view class="menu-card">
+    <view class="menu-item" bindtap="goToMyPosts">
+      <view class="menu-left">
+        <text class="menu-icon"></text>
+        <text class="menu-label">我的帖子</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    
+    <view class="menu-item" bindtap="goToMyComments">
+      <view class="menu-left">
+        <text class="menu-icon"></text>
+        <text class="menu-label">我的评论</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    
+    <view class="menu-item" bindtap="showEdit" data-type="nickname">
+      <view class="menu-left">
+        <text class="menu-icon"></text>
+        <text class="menu-label">修改昵称</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    
+    <view class="menu-item" bindtap="changeAvatar">
+      <view class="menu-left">
+        <text class="menu-icon"></text>
+        <text class="menu-label">更换头像</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+
+  <view class="menu-card">
+    <view class="menu-item" bindtap="onAbout">
+      <view class="menu-left">
+        <text class="menu-icon"></text>
+        <text class="menu-label">关于我们</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+    
+    <view class="menu-item logout" wx:if="{{userInfo.isLogin}}" bindtap="onLogout">
+      <view class="menu-left">
+        <text class="menu-icon"></text>
+        <text class="menu-label logout-text">退出登录</text>
+      </view>
+      <text class="menu-arrow">></text>
+    </view>
+  </view>
+</view>
+
+<!-- 编辑昵称弹窗 -->
+<view class="modal" wx:if="{{showEditModal}}">
+  <view class="modal-mask" bindtap="closeEditModal"></view>
+  <view class="modal-content centered-modal">
+    <view class="modal-header">
+      <text class="modal-title">修改昵称</text>
+      <text class="modal-close" bindtap="closeEditModal">✕</text>
+    </view>
+    
+    <view class="modal-body">
+      <input 
+        class="modal-input" 
+        placeholder="请输入新昵称" 
+        value="{{editValue}}" 
+        bindinput="onEditInput"
+        maxlength="20"
+        focus="{{showEditModal}}"
+      />
+    </view>
+    
+    <view class="modal-footer">
+      <button class="cancel-btn" bindtap="closeEditModal">取消</button>
+      <button class="confirm-btn" bindtap="saveEdit">保存</button>
+    </view>
+  </view>
+</view>
+
+<!-- 关于我们弹窗 -->
+<view class="modal" wx:if="{{showAboutModal}}">
+  <view class="modal-mask" bindtap="closeAboutModal"></view>
+  <view class="modal-content about-modal">
+    <view class="modal-header">
+      <text class="modal-title">关于我们</text>
+      <text class="modal-close" bindtap="closeAboutModal">✕</text>
+    </view>
+    <view class="about-divider"></view>
+    <view class="modal-body about-body">
+   <!-- <view class="about-logo"></view>--> 
+      <view class="about-name">智能校园生活</view>
+      <view class="about-version">v1.0</view>
+      <view class="about-divider"></view>
+      <view class="about-info">
+        <text class="about-label">商务合作</text>
+        <text class="about-value">vx:wuhupopopo</text>
+      </view>
+      <view class="about-desc">
+        <text>提供失物招领、二手市场、校园论坛等服务</text>
+      </view>
+    </view>
+    
+    <view class="modal-footer">
+      <button class="confirm-btn full-btn" bindtap="copyAboutInfo">复制联系方式</button>
+    </view>
+  </view>
+</view>
+
+<!-- 底部导航栏 -->
+<view class="tab-bar">
+  <view class="tab-item" bindtap="goToHome">
+    <text class="tab-icon">▣</text>
+    <text class="tab-text">首页</text>
+  </view>
+  <view class="tab-item" bindtap="goToAiChat">
+    <text class="tab-icon">☢</text>
+    <text class="tab-text">AI对话</text>
+  </view>
+  <view class="tab-item active" bindtap="goToProfile">
+    <text class="tab-icon">⚌</text>
+    <text class="tab-text">个人中心</text>
+  </view>
+</view>

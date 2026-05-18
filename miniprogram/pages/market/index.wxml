@@ -1,0 +1,140 @@
+<!-- pages/market/index.wxml -->
+<view class="custom-nav">
+  <view class="nav-left" bindtap="goHome">
+    <text class="icon">↩</text>
+  </view>
+  <view class="nav-title">校园二手市场</view>
+</view>
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-container">
+    <view class="search-input">
+      <text class="search-icon">🔍</text>
+      <input 
+        class="input-field"
+        type="text" 
+        placeholder="搜索商品名称、描述..." 
+        value="{{searchValue}}" 
+        bindinput="onSearch" 
+        bindconfirm="handleSearchConfirm"
+        bindfocus="onSearchFocus"
+        confirm-type="search"
+      />
+      <text class="clear-icon" wx:if="{{searchValue}}" bindtap="clearSearch">✕</text>
+    </view>
+    <button class="add-btn" bindtap="goToAdd">发布</button>
+  </view>
+
+  <!-- 搜索面板（历史 + 热门） -->
+  <view class="search-panel" wx:if="{{showSearchPanel}}">
+    <!-- 搜索历史 -->
+    <view class="panel-section" wx:if="{{searchHistory.length > 0}}">
+      <view class="panel-header">
+        <text class="panel-title">搜索历史</text>
+        <text class="panel-clear" bindtap="clearHistory">清空</text>
+      </view>
+      <view class="tag-list">
+        <view 
+          class="tag-item" 
+          wx:for="{{searchHistory}}" 
+          wx:key="*this"
+          bindtap="onTagTap"
+          data-keyword="{{item}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+
+    <!-- 热门搜索 -->
+    <view class="panel-section">
+      <view class="panel-header">
+        <text class="panel-title">热门搜索</text>
+      </view>
+      <view class="tag-list">
+        <view 
+          class="tag-item hot" 
+          wx:for="{{hotSearches}}" 
+          wx:key="*this"
+          bindtap="onTagTap"
+          data-keyword="{{item}}"
+        >
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索结果提示 -->
+  <view class="search-result-tip" wx:if="{{searchValue && !showSearchPanel}}">
+    <text>搜索"{{searchValue}}"的结果</text>
+    <text class="result-count">共{{total}}件商品</text>
+  </view>
+
+  <!-- 分类筛选 -->
+  <view class="category-container">
+    <scroll-view scroll-x class="category-scroll">
+      <view class="category-list">
+        <block wx:for="{{categories}}" wx:key="index">
+          <view 
+            class="category-item {{categoryIndex === index ? 'active' : ''}}" 
+            bindtap="switchCategory" 
+            data-index="{{index}}"
+          >
+            {{item}}
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 商品列表 -->
+  <view class="list-container">
+    <block wx:for="{{list}}" wx:key="id">
+      <view class="card" bindtap="goToDetail" data-id="{{item.id}}">
+        <view class="card-left">
+          <image 
+            src="{{item.imageList[0] || '/images/xxx.jpg'}}" 
+            mode="aspectFill" 
+            class="product-image"
+          />
+          <view class="condition-tag" style="background-color: {{item.conditionColor}}">
+            {{item.condition}}
+          </view>
+        </view>
+        
+        <view class="card-right">
+          <view class="title">{{item.title}}</view>
+          <view class="info">
+            <text class="category-tag">{{item.categoryIcon}} {{item.category}}</text>
+            <text class="description">{{item.description}}</text>
+          </view>
+          <view class="price-container">
+            <view class="current-price">¥{{item.priceFormatted}}</view>
+            <view class="original-price" wx:if="{{item.originalPrice}}">¥{{item.originalPriceFormatted}}</view>
+          </view>
+          <view class="time">{{item.createTime}}</view>
+        </view>
+      </view>
+    </block>
+    
+    <!-- 搜索无结果 -->
+    <view wx:if="{{list.length === 0 && !loading && searchValue}}" class="empty">
+      <text class="empty-icon">🔍</text>
+      <text class="empty-text">未找到相关商品</text>
+      <text class="empty-hint">换个关键词试试吧</text>
+    </view>
+    
+    <!-- 普通空状态 -->
+    <view wx:if="{{list.length === 0 && !loading && !searchValue}}" class="empty">
+      <text class="empty-icon">🛒</text>
+      <text class="empty-text">暂无商品</text>
+      <text class="empty-hint">快去发布你的闲置物品吧~</text>
+    </view>
+    
+    <!-- 加载状态 -->
+    <view wx:if="{{loading}}" class="loading">
+      <text>加载中...</text>
+    </view>
+  </view>
+</view>

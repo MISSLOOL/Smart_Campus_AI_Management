@@ -1,0 +1,89 @@
+
+
+<view class="custom-nav {{type === 'market' ? 'market-nav' : ''}}">
+  <view class="nav-left" bindtap="goHome">
+    <text class="icon">↩</text>
+  </view>
+  <view class="nav-title">{{type === 'market' ? '商品详情' : '详细信息'}}</view>
+</view>
+
+<view class="container" wx:if="{{detail}}">
+
+<!-- 轮播图 -->
+<view class="swiper-container">
+  <swiper class="swiper" indicator-dots="{{imageList.length > 1}}" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff" autoplay circular current="{{currentImageIndex}}" bindchange="onSwiperChange">
+    <block wx:for="{{imageList}}" wx:key="*this">
+      <swiper-item>
+        <image src="{{item}}" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="image-counter" wx:if="{{imageList.length > 1}}">
+    <text>{{currentImageIndex + 1}}/{{imageList.length}}</text>
+  </view>
+</view>
+
+<view class="content-card">
+  <view class="card-header">
+    <text class="title">{{detail.title}}</text>
+    <view class="tag-group" wx:if="{{type === 'lost'}}">
+      <view class="tag {{detail.type === 1 ? 'tag-lost' : 'tag-found'}}">
+        {{detail.type === 1 ? '寻物启事' : '失物招领'}}
+      </view>
+      <view class="status {{detail.status === 1 ? 'done' : 'ing'}}">
+        {{detail.status === 1 ? '已找回' : '寻找中'}}
+      </view>
+    </view>
+    <view class="tag-group" wx:elif="{{type === 'market'}}">
+      <view class="tag tag-market">
+        {{detail.category}}
+      </view>
+      <view class="condition" wx:if="{{detail.condition}}">
+        {{detail.condition}}
+      </view>
+      <view class="status {{detail.status === 1 ? 'done' : 'ing'}}">
+        {{detail.status === 0 ? '在售' : detail.status === 1 ? '已售' : '已下架'}}
+      </view>
+    </view>
+  </view>
+
+  <view class="line"></view>
+
+  
+  <!-- 二手市场价格信息 -->
+  <view class="price-section" wx:if="{{type === 'market'}}">
+  
+    <view class="current-price">¥{{detail.price}}</view>
+    <view class="original-price" wx:if="{{detail.originalPrice}}">原价: ¥{{detail.originalPrice}}</view>
+  </view>
+
+  <view class="item">
+    <text class="label">{{type === 'market' ? '商品描述' : '物品描述'}}</text>
+    <text class="value desc">{{type === 'market' ? detail.description : detail.content || '暂无描述'}}</text>
+  </view>
+
+  <view class="item-grid">
+    <view class="item" wx:if="{{type === 'lost'}}">
+      <text class="label">丢失地点</text>
+      <text class="value">📍 {{detail.location}}</text>
+    </view>
+    <view class="item" wx:elif="{{type === 'market'}}">
+      <text class="label">商品分类</text>
+      <text class="value">📦 {{detail.category}}</text>
+    </view>
+    <view class="item">
+      <text class="label">发布时间</text>
+      <text class="value">⏰ {{detail.createTime}}</text>
+    </view>
+  </view>
+
+  <view class="item contact-box">
+    <text class="label">联系方式</text>
+    <text class="value contact">📞 {{detail.contact || '未填写'}}</text>
+  </view>
+</view>
+
+<view class="bottom">
+  <button class="btn" bindtap="contactUser">联系对方</button>
+</view>
+</view>

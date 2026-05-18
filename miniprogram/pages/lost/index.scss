@@ -1,0 +1,220 @@
+/* pages/index/index.scss */
+.custom-nav {
+  width: 100%;
+  height: calc(var(--status-bar-height) + 44px);
+  padding-top: var(--status-bar-height);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  min-height: 100px; 
+
+  background-color: skyblue;
+  border-bottom-left-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+  box-shadow: 0 4px 10px rgba(135, 206, 235, 0.3);
+
+  position: relative;
+  z-index: 99;
+}
+
+.nav-left {
+  font-size: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-top: 55px;
+}
+
+.nav-title {
+  font-size: 60rpx;
+  font-weight: bold;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: 30px;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  background-color: #f5f6fa;
+  padding: 20rpx 30rpx;
+}
+
+/* 搜索与发布 */
+.search-container {
+  width: 100%;
+  display: flex;
+  padding: 20rpx 0;
+  background: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  align-items: center;
+
+  .clear-icon {
+    font-size: 28rpx;
+    color: #ccc;
+    padding: 10rpx;
+    margin-left: 10rpx;
+  }
+
+  .search-input {
+    flex: 1;
+    background: #f0f2f5;
+    margin: 10rpx 20rpx;
+    padding: 15rpx 25rpx;
+    border-radius: 30rpx;
+    font-size: 28rpx;
+    display: flex;
+    align-items: center;
+
+    .icon {
+      font-size: 30rpx;
+    }
+
+    input {
+      margin-left: 10rpx;
+      flex: 1;
+    }
+  }
+
+  .add-btn {
+    width: 140rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    background: #007aff;
+    color: white;
+    border-radius: 30rpx;
+    font-size: 28rpx;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* 顶部 Tab */
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30rpx;
+  background: #fff;
+  padding: 20rpx 0;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.02);
+
+  .tab-item {
+    font-size: 32rpx;
+    color: #666;
+    font-weight: 500;
+    padding: 10rpx 40rpx;
+    border-radius: 12rpx;
+    transition: all 0.3s;
+
+    &.active {
+      background: #007aff;
+      color: white;
+    }
+  }
+}
+
+/* 列表区域 */
+.list-container {
+  padding-bottom: 20rpx;
+}
+
+/* 列表项卡片 */
+.card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.02);
+  display: flex;
+  align-items: center;
+
+  .card-left {
+    margin-right: 30rpx;
+
+    image {
+      width: 160rpx;
+      height: 160rpx;
+      border-radius: 12rpx;
+      background-color: #f0f0f0;
+    }
+  }
+
+  .card-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* ✅ 关键：改为 center，让内容垂直居中，不强制撑开 */
+    height: 160rpx; /* 保持高度与图片一致，或者设为 auto */
+    padding-right: 10rpx; /* 防止文字太靠边 */
+    box-sizing: border-box;
+  }
+
+  .title {
+    font-size: 34rpx;
+    font-weight: bold;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%; /* 确保标题占满宽度 */
+  }
+
+  .info {
+    display: flex;
+    align-items: center;
+    margin-top: 15rpx; /* 标题与信息的间距 */
+
+    .tag {
+      font-size: 20rpx;
+      padding: 4rpx 12rpx;
+      border-radius: 6rpx;
+      color: white;
+      margin-right: 15rpx;
+
+      &.lost {
+        background-color: #ff4d4f;
+      }
+
+      &.found {
+        background-color: #52c41a;
+      }
+    }
+
+    .location {
+      font-size: 26rpx;
+      color: #666;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+    }
+  }
+
+  .time {
+    font-size: 24rpx;
+    color: #999;
+    margin-top: 15rpx; /* ✅ 修改点：使用固定间距，而不是自动外边距 */
+    align-self: flex-end; /* 时间靠右 */
+  }
+}
+
+/* 空状态 */
+.empty {
+  text-align: center;
+  color: #999;
+  margin-top: 100rpx;
+  font-size: 28rpx;
+}
+

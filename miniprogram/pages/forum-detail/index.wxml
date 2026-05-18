@@ -1,0 +1,90 @@
+<view class="custom-nav">
+  <view class="nav-left" bindtap="goBack">
+    <text class="icon">↩</text>
+  </view>
+  <view class="nav-title">{{categoryName}}</view>
+</view>
+
+<view class="container">
+  <!-- 帖子列表 -->
+  <view class="post-list">
+    <view class="post-item" wx:for="{{postList}}" wx:key="id" bindtap="goToPost" data-id="{{item.id}}">
+      <view class="post-header">
+        <image class="user-avatar" src="{{item.avatar || '/images/xxx.jpg'}}" mode="aspectFill"></image>
+        <view class="user-info">
+          <text class="user-name">{{item.nickname || '匿名用户'}}</text>
+          <text class="post-time">{{item.createTime}}</text>
+        </view>
+        <view class="post-tag" wx:if="{{item.status === 1}}">置顶</view>
+      </view>
+      
+      <view class="post-title">{{item.title}}</view>
+      <view class="post-content">{{item.content}}</view>
+      
+      <view class="post-footer">
+        <view class="footer-item">
+          <image class="footer-icon" src="/images/浏览.png" mode="aspectFit"></image>
+          <text class="footer-num">{{item.viewCount}}</text>
+        </view>
+        <view class="footer-item">
+          <image class="footer-icon" src="/images/赞.png" mode="aspectFit"></image>
+          <text class="footer-num">{{item.likeCount}}</text>
+        </view>
+        <view class="footer-item">
+          <image class="footer-icon" src="/images/回复.png" mode="aspectFit"></image>
+          <text class="footer-num">{{item.commentCount}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view wx:if="{{postList.length === 0 && !loading}}" class="empty">
+      <text class="empty-icon">📝</text>
+      <text class="empty-text">暂无帖子</text>
+      <text class="empty-hint">快来发布第一个帖子吧~</text>
+    </view>
+
+    <!-- 加载状态 -->
+    <view wx:if="{{loading}}" class="loading">
+      <text>加载中...</text>
+    </view>
+  </view>
+
+  <!-- 发布按钮 -->
+  <view class="publish-btn" bindtap="showPublishModal">
+    <image class="publish-icon" src="/images/修改.png" mode="aspectFit"></image>
+  </view>
+</view>
+
+<!-- 发布弹窗 -->
+<view class="modal" wx:if="{{showPublish}}">
+  <view class="mask" bindtap="closePublishModal"></view>
+  <view class="publish-modal">
+    <view class="modal-header">
+      <text class="modal-title">发布帖子</text>
+      <text class="modal-close" bindtap="closePublishModal">✕</text>
+    </view>
+    
+    <view class="modal-body">
+      <input 
+        class="title-input" 
+        placeholder="请输入标题" 
+        value="{{publishTitle}}" 
+        bindinput="onTitleInput"
+        maxlength="50"
+      />
+      <textarea 
+        class="content-input" 
+        placeholder="请输入内容..." 
+        value="{{publishContent}}" 
+        bindinput="onContentInput"
+        maxlength="1000"
+      />
+    </view>
+    
+    <view class="modal-footer">
+      <button class="cancel-btn" bindtap="closePublishModal">取消</button>
+      <button class="submit-btn" bindtap="publishPost">发布</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,257 @@
+
+.custom-nav {
+  width: 100%;
+  height: calc(var(--status-bar-height) + 44px);
+  padding-top: var(--status-bar-height);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  min-height: 100px; 
+
+  background-color: skyblue;
+  border-bottom-left-radius: 0rpx;
+  border-bottom-right-radius: 0rpx;
+  box-shadow: 0 4px 10px rgba(135, 206, 235, 0.3);
+
+  position: relative;
+  z-index: 99;
+}
+
+.nav-left {
+  font-size: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-top: 55px;
+}
+
+.nav-title {
+  font-size: 60rpx;
+  font-weight: bold;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: 30px;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+
+page {
+  background: #f2f5fa;
+  font-family: system-ui;
+}
+
+.container {
+  width: 100%;
+  padding-bottom: 130rpx;
+}
+
+/* 轮播图容器 */
+.swiper-container {
+  position: relative;
+  margin-top: -200rpx;
+  z-index: 999;
+  width: 100%;
+}
+
+.swiper {
+  width: 100%;
+  height: 460rpx;
+  z-index: 999;
+}
+
+swiper-item image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 999;
+}
+
+/* 图片计数器 */
+.image-counter {
+  position: absolute;
+  bottom: 20rpx;
+  right: 20rpx;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 24rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+/* 卡片美化 */
+.content-card {
+  margin: 20rpx 30rpx 40rpx;
+  background: #fff;
+  border-radius: 36rpx;
+  padding: 50rpx 40rpx;
+  box-shadow: 0 20rpx 60rpx rgba(0,0,0,0.08);
+  position: relative;
+  z-index: 10;
+}
+
+/* 标题 */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30rpx;
+}
+.title {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #222;
+  flex: 1;
+  line-height: 1.4;
+}
+
+/* 标签 */
+.tag-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+  align-items: flex-end;
+}
+.tag {
+  padding: 12rpx 24rpx;
+  border-radius: 50rpx;
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+.tag-lost {
+  background: linear-gradient(135deg, #ff6b6b, #ff4141);
+}
+.tag-found {
+  background: linear-gradient(135deg, #06c880, #04a770);
+}
+.status {
+  font-size: 24rpx;
+  padding: 6rpx 14rpx;
+  border-radius: 20rpx;
+  background: #f5f7fa;
+  color: #999;
+}
+.status.done {
+  background: #e6fff2;
+  color: #06c880;
+}
+.status.ing {
+  background: #fff4e6;
+  color: #ff9500;
+}
+
+/* 线条 */
+.line {
+  height: 1rpx;
+  background: #f0f0f0;
+  margin: 20rpx 0 40rpx;
+}
+
+/* 内容项 */
+.item {
+  margin-bottom: 40rpx;
+}
+.label {
+  font-size: 28rpx;
+  color: #999;
+  margin-bottom: 16rpx;
+  display: block;
+}
+.value {
+  font-size: 32rpx;
+  color: #333;
+  line-height: 1.6;
+}
+.desc {
+  line-height: 1.8;
+  color: #555;
+}
+
+/* 网格布局 */
+.item-grid {
+  display: flex;
+  gap: 30rpx;
+}
+.item-grid .item {
+  flex: 1;
+  background: #f9fafb;
+  padding: 30rpx;
+  border-radius: 24rpx;
+}
+
+/* 联系方式高亮 */
+.contact-box {
+  background: #f0fff4;
+  padding: 30rpx;
+  border-radius: 24rpx;
+}
+.contact {
+  color: #04a770;
+  font-weight: 600;
+}
+
+/* 底部按钮 */
+.bottom {
+  padding: 0 30rpx;
+}
+.btn {
+  width: 100%;
+  height: 90rpx;
+  line-height: 60rpx;
+  background: linear-gradient(135deg, #06c880, #04a770);
+  color: #fff;
+  border-radius: 50rpx;
+  font-size: 34rpx;
+  font-weight: 600;
+  box-shadow: 0 12rpx 30rpx rgba(0, 88, 56, 0.25);
+}
+.btn::after {
+  border: none;
+}
+
+/* 二手市场特有样式 */
+.price-section {
+  margin-bottom: 30rpx;
+  padding: 20rpx;
+  background: #fff9f0;
+  border-radius: 16rpx;
+  border-left: 8rpx solid #FF9F43;
+}
+
+.current-price {
+  font-size: 52rpx;
+  font-weight: bold;
+  color: #ff4d4f;
+  margin-bottom: 10rpx;
+}
+
+.original-price {
+  font-size: 28rpx;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.tag-market {
+  background: linear-gradient(135deg, #FF9F43, #ff8c1a);
+}
+
+.condition {
+  font-size: 24rpx;
+  padding: 6rpx 14rpx;
+  border-radius: 20rpx;
+  background: #e6f7ff;
+  color: #1890ff;
+}
+
+/* 市场详情页导航栏颜色 */
+.market-nav {
+  background-color: #FF9F43;
+  box-shadow: 0 4px 10px rgba(255, 159, 67, 0.3);
+}
